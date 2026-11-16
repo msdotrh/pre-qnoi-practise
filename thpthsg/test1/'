@@ -1,0 +1,69 @@
+// #include <@msr.h>
+#include <cstdio>
+#include <functional>
+#include <iostream>
+#include <queue>
+#include <string>
+#include <utility>
+#include <vector>
+using namespace std;
+template <typename T> using vec = vector<T>;
+using ll = long long;
+namespace r = ranges;
+char el = '\n';
+#define int ll
+
+void open(string inp, string out) {
+  string x = inp + ".inp";
+  string y = out + ".out";
+  freopen(x.c_str(), "r", stdin);
+  freopen(y.c_str(), "w", stdout);
+}
+
+void io() {
+  ios_base::sync_with_stdio(false);
+  cin.tie(nullptr);
+  cout.tie(nullptr);
+}
+
+int t = 1;
+int MAX = 1e18;
+int MIN = -MAX;
+
+struct Edge {
+  int node, w;
+};
+
+int n, q;
+vec<vec<Edge>> graph;
+
+int djkk(int x, int y) {
+  // x --->>> y
+  vec<int> dist(n + 1, 0);
+  vec<bool> visited(n + 1, 0);
+
+  priority_queue<int, vec<pair<int, int>>, greater<pair<int, int>>()> pq;
+}
+
+void solve() {
+  cin >> n >> q;
+  for (int i = 1; i < n; i++) {
+    int a, b, w;
+    cin >> a >> b >> w;
+    graph[a].push_back({b, w});
+    graph[b].push_back({a, w});
+  }
+  while (q--) {
+    int x, y;
+    cin >> x >> y;
+    cout << djkk(x, y);
+  }
+}
+
+signed main() {
+  io();
+  // cin >> t;
+  while (t--) {
+    solve();
+  }
+}

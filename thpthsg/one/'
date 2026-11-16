@@ -1,0 +1,68 @@
+// #include <@msr.h>
+#include <cstdio>
+#include <iostream>
+#include <numeric>
+#include <string>
+#include <vector>
+using namespace std;
+template <typename T> using vec = vector<T>;
+using ll = long long;
+char el = '\n';
+#define int ll
+
+void open(string inp, string out) {
+  string x = inp + ".inp";
+  string y = out + ".out";
+  freopen(x.c_str(), "r", stdin);
+  freopen(y.c_str(), "w", stdout);
+}
+
+void io() {
+  ios_base::sync_with_stdio(false);
+  cin.tie(nullptr);
+  cout.tie(nullptr);
+}
+
+int t = 1;
+int MAX = 1e18;
+int MIN = -MAX;
+
+int n, l, r;
+vec<int> a;
+vec<int> pref;
+
+int dp(int i) {
+  if (i >= n) {
+    return MIN;
+  }
+  if (i == n - 1) {
+    return 0;
+  }
+  int mx = MIN;
+  for (int j = l; j <= r; j++) {
+    int k = dp(i + j);
+    int sum = 0;
+    for (int k = i; k <= j; k++) {
+      sum += a[k];
+    }
+    mx = max(mx, k + sum);
+  }
+  return mx;
+}
+
+void solve() {
+  cin >> n >> l >> r;
+  a.assign(n, 0);
+  for (int &x : a) {
+    cin >> x;
+  }
+  cout << dp(0);
+}
+
+signed main() {
+  io();
+  // cin >> t;
+  while (t--) {
+    solve();
+  }
+}

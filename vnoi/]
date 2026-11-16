@@ -1,0 +1,33 @@
+// #include <@msr.h>
+#include <iostream>
+#include <map>
+#include <vector>
+using namespace std;
+template <typename T> using vec = vector<T>;
+using ll = long long;
+char el = '\n';
+// #define int ll
+
+signed main() {
+  ios_base::sync_with_stdio(false);
+  cin.tie(nullptr);
+  cout.tie(nullptr);
+  int n, k;
+  cin >> n >> k;
+  vec<int> a(n);
+  for (int &x : a) {
+    cin >> x;
+  }
+  int target = 2 * k;
+  map<int, int> mp;
+  for (int i = 0; i < n; i++) {
+    int need = target - a[i];
+    if (mp.contains(need)) {
+      cout << i << " " << mp[need] << el;
+      return 0;
+    } else {
+      mp[a[i]] = i;
+    }
+  }
+  cout << 0 << el;
+}
