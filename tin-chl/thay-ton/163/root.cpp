@@ -6,7 +6,8 @@
 #include <string>
 #include <vector>
 using namespace std;
-template <typename T> using vec = vector<T>;
+template <typename T>
+using vec = vector<T>;
 using ll = long long;
 namespace r = ranges;
 char el = '\n';
@@ -41,8 +42,7 @@ int bfs(int u) {
     int x = q.front();
     q.pop();
     for (int v : adj[x]) {
-      if (d[v] != -1)
-        continue;
+      if (d[v] != -1) continue;
       d[v] = d[x] + 1;
       q.push(v);
     }

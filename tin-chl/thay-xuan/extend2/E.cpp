@@ -33,15 +33,9 @@ void solve() {
   int cnt = 0;
   for (int x0 = 1; x0 <= n; x0++) {
     for (int y0 = 1; y0 <= m; y0++) {
-      for (int x1 = x0; x1 <= n; x1++) {
-        for (int y1 = y0; y1 <= m; y1++) {
-          int dai = x1 - x0 + 1;
-          int rong = y1 - y0 + 1;
-          int c = 2 * (dai + rong);
-          if (c >= p) {
-            cnt++;
-          }
-        }
+      int cv = (x0 + y0) * 2;
+      if (cv >= p) {
+        cnt += (n - x0 + 1) * (m - y0 + 1);
       }
     }
   }
